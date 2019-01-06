@@ -42,7 +42,7 @@
             double colsNeeded = Math.Ceiling((double)compressedData.Length / StorageTableSingleCellSize);
             if (colsNeeded > MaxSupportedColumns)
             {
-                throw new InvalidOperationException("Max supported size of data is 640KB (20 columns)");
+                throw new InvalidOperationException("Max supported size of data post compression is 640KB (20 columns)");
             }
 
             for (int i = 0; i < colsNeeded; i++)
