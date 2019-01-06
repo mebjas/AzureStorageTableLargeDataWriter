@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AzureStorageTableBigDataWriter")]
+[assembly: AssemblyTitle("AzureStorageTableLargeDataWriter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AzureStorageTableBigDataWriter")]
+[assembly: AssemblyProduct("AzureStorageTableLargeDataWriter")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1aeae96e-4de6-4fb7-b65d-41ae24bf79f5")]
+[assembly: Guid("f242d014-f3c8-4167-85be-00e7bf4e50d2")]
 
 // Version information for an assembly consists of the following four values:
 //
