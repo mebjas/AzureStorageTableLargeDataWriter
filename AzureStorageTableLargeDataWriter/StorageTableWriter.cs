@@ -11,12 +11,16 @@
 
     public class StorageTableWriter
     {
+        #region constant fields
         const string MetaDataColumnName = "_md";
         const string ColumnNamePrefix = "_e";
         const int StorageTableSingleCellSize = 32 * 1024;
-        const int MaxSupportedColumns = 20;
+        const int MaxSupportedColumns = 25;
+        #endregion
 
+        #region private variables
         CloudTable table;
+        #endregion
 
         public StorageTableWriter(string connectionString)
         {
@@ -42,7 +46,7 @@
             double colsNeeded = Math.Ceiling((double)compressedData.Length / StorageTableSingleCellSize);
             if (colsNeeded > MaxSupportedColumns)
             {
-                throw new InvalidOperationException("Max supported size of data post compression is 640KB (20 columns)");
+                throw new InvalidOperationException("Max supported size of data post compression is 800KB (25 columns)");
             }
 
             for (int i = 0; i < colsNeeded; i++)
@@ -105,22 +109,5 @@
             response[DataEntity.RowKeyName] = result.RowKey;
             return response;
         }
-    }
-
-    internal class MetaData
-    {
-        public MetaData()
-        {
-        }
-
-        public MetaData(int columnCount, int length)
-        {
-            this.ColumnCount = columnCount;
-            this.Length = length;
-        }
-
-        public int ColumnCount { get; set; }
-
-        public int Length { get; set; }
     }
 }

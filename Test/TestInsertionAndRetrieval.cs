@@ -15,7 +15,7 @@
         [TestMethod]
         public async Task TestMethod1()
         {
-            const int n = 26000;
+            const int n = 32000;
             string partitionKey = Guid.NewGuid().ToString();
             string rowKey = Guid.NewGuid().ToString();
             string columnName = "largeDataColumn";
