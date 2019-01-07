@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using AzureStorageTableLargeDataWriter;
@@ -10,7 +11,8 @@
     [TestClass]
     public class TestInsertionAndRetrieval
     {
-        string connectionString = "";
+        static string connectionString = "";
+        static Dictionary<string, string> randomKVP = new Dictionary<string, string>();
 
         [TestMethod]
         public async Task TestMethod1()
@@ -31,9 +33,17 @@
                 Dictionary<string, string> largeData = JsonConvert.DeserializeObject<Dictionary<string, string>>(readData[columnName]);
                 Assert.AreEqual(n, largeData.Count);
 
+                foreach (KeyValuePair<string, string> kvp  in largeData)
+                {
+                    Assert.IsTrue(randomKVP.ContainsKey(kvp.Key));
+                    Assert.AreEqual(randomKVP[kvp.Key], kvp.Value);
+                }
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("Exception Type: {0}", ex.GetType().Name);
+                Debug.WriteLine("Exception Message: {0}", ex.Message);
+
                 Assert.Fail();
                 throw;
             }
@@ -45,10 +55,9 @@
             obj.Add("PartitionKey", partitionKey);
             obj.Add("RowKey", rowKey);
 
-            Dictionary<string, Guid> randomKVP = new Dictionary<string, Guid>();
             for (int i = 0; i < n; i++)
             {
-                randomKVP["key_" +i] = Guid.NewGuid();
+                randomKVP["key_" +i] = Guid.NewGuid().ToString();
             }
 
             obj.Add(columnName, JsonConvert.SerializeObject(randomKVP));
